@@ -1,0 +1,10 @@
+.git
+.husky
+node_modules
+package-lock.json
+public
+dist
+dist-ssr
+.prettierignore
+.gitignore
+**/*.svg
