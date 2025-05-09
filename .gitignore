@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+mosquitto/data/mosquitto.db
+mosquitto/log/mosquitto.log
