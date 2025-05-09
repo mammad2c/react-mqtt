@@ -8,3 +8,6 @@ dist-ssr
 .prettierignore
 .gitignore
 **/*.svg
+Dockerfile
+mosquitto/config/mosquitto.conf
+mosquitto/data/mosquitto.db
