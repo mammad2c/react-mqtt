@@ -1,11 +1,11 @@
-import { Button } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   return (
-    <div>
-      Hello Chakra
-      <Button>Click</Button>
-    </div>
+    <Center p="20">
+      <Toaster />
+    </Center>
   );
 }
 
