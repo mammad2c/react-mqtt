@@ -25,3 +25,7 @@ dist-ssr
 
 mosquitto/data/mosquitto.db
 mosquitto/log/mosquitto.log
+
+# React Router
+/.react-router/
+/build/
