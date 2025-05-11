@@ -2,6 +2,10 @@ include:
   - mqtt-broker.yml
 
 services:
+  git:
+    image: alpine/git
+    volumes:
+      - .:/app
   react-mtqq:
     build:
       context: .
@@ -18,3 +22,4 @@ services:
       - /app/node_modules
     depends_on:
       - mqtt-broker
+      - git
