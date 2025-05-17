@@ -1,4 +1,4 @@
-import { toaster } from "@/services/toaster";
+import { toaster } from "@/utils/toaster";
 import {
   Toaster as ChakraToaster,
   Portal,

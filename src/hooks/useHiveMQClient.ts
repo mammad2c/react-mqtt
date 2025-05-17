@@ -1,5 +1,5 @@
 import { hiveMQClient as client } from "@/services/hiveMQClient";
-import { toaster } from "@/services/toaster";
+import { toaster } from "@/utils/toaster";
 import type mqtt from "mqtt";
 import { useState } from "react";
 
