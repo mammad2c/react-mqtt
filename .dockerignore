@@ -3,3 +3,4 @@ npm-debug.log
 .react-router
 build
 dist
+coverage

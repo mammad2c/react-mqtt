@@ -5,11 +5,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
 import type { Route } from "../.react-router/types/src/+types/root";
-import { Toaster } from "./components/ui/toaster";
-import { Center } from "@chakra-ui/react";
-import { Provider as ChakraProvider } from "./components/ui/provider";
+import { Providers } from "./providers";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,12 +27,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <ChakraProvider>
-      <Center p="20">
-        <Outlet />
-        <Toaster />
-      </Center>
-    </ChakraProvider>
+    <Providers>
+      <Outlet />
+    </Providers>
   );
 }
 
