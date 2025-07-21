@@ -1,4 +1,4 @@
-import { useHiveMQClient } from "@/hooks/useHiveMQClient";
+import { useHiveMQClient } from "@/hooks/use-hive-mq-client";
 import { Button, Card, Field, Input, Stack } from "@chakra-ui/react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
@@ -17,7 +17,7 @@ export default function HiveMQ() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const { state, connect } = useHiveMQClient();
+  const { status, connect } = useHiveMQClient();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     connect(data);
@@ -111,7 +111,7 @@ export default function HiveMQ() {
 
             <Button
               colorPalette="yellow"
-              loading={state.isPending}
+              loading={status === "connecting"}
               type="submit"
             >
               Connect
