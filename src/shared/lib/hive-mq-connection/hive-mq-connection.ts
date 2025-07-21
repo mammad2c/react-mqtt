@@ -1,9 +1,9 @@
 import mqtt from "mqtt";
 
-const hiveMQClient = mqtt.connect({
+const hiveMQConnection = mqtt.connect({
   protocol: "wss",
   manualConnect: true,
   clientId: "hivemq-client",
 });
 
-export { hiveMQClient };
+export { hiveMQConnection };

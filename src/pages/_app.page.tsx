@@ -1,10 +1,10 @@
-import { Providers } from "@/shared/layouts/providers";
+import { DefaultLayout } from "@/shared/layouts/default-layout";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Providers>
+    <DefaultLayout>
       <Component {...pageProps} />
-    </Providers>
+    </DefaultLayout>
   );
 }

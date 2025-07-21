@@ -1,11 +1,11 @@
-import { toaster } from "./toast";
+import { toast } from ".";
 import { render } from "@/shared/tests/test-utils";
 import { waitFor } from "@testing-library/react";
 import { useEffect } from "react";
 
 function TestComponent() {
   function createToast() {
-    toaster.create({
+    toast.create({
       title: "Toast Title",
       description: "Toast Description",
     });

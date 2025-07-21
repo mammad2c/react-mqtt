@@ -1,4 +1,4 @@
-import { toaster } from "@/shared/lib/toast";
+import { toast } from "@/shared/lib/toast";
 import {
   Toaster as ChakraToaster,
   Portal,
@@ -10,7 +10,7 @@ import {
 export function Toaster() {
   return (
     <Portal>
-      <ChakraToaster toaster={toaster} insetInline={{ mdDown: "4" }}>
+      <ChakraToaster toaster={toast} insetInline={{ mdDown: "4" }}>
         {(toast) => (
           <Toast.Root width={{ md: "sm" }}>
             {toast.type === "loading" ? (

@@ -1,5 +1,5 @@
-import { hiveMQClient as client } from "@/services/hive-mq-client";
-import { toaster } from "@/shared/lib/toast";
+import { hiveMQConnection } from "./hive-mq-connection";
+import { toast } from "@/shared/lib/toast/toast";
 import type mqtt from "mqtt";
 import { useSyncExternalStore } from "react";
 
@@ -8,7 +8,7 @@ let connectionStatus: "connecting" | "connected" | "disconnected" =
 
 function subscribe(onStoreChange: () => void) {
   const handleConnect = () => {
-    toaster.create({
+    toast.create({
       title: "Connected",
       description: "You are now connected to the MQTT broker.",
       type: "success",
@@ -19,8 +19,8 @@ function subscribe(onStoreChange: () => void) {
   };
 
   const handleError = (err: Error) => {
-    client.end();
-    toaster.create({
+    hiveMQConnection.end();
+    toast.create({
       title: "Connection error",
       description: err.message,
       type: "error",
@@ -31,7 +31,7 @@ function subscribe(onStoreChange: () => void) {
   };
 
   const handleEnd = () => {
-    toaster.create({
+    toast.create({
       title: "Disconnected",
       description: "You have been disconnected from the MQTT broker.",
       type: "info",
@@ -41,14 +41,14 @@ function subscribe(onStoreChange: () => void) {
     onStoreChange();
   };
 
-  client.on("connect", handleConnect);
-  client.on("error", handleError);
-  client.on("end", handleEnd);
+  hiveMQConnection.on("connect", handleConnect);
+  hiveMQConnection.on("error", handleError);
+  hiveMQConnection.on("end", handleEnd);
 
   return () => {
-    client.off("connect", handleConnect);
-    client.off("error", handleError);
-    client.off("end", handleEnd);
+    hiveMQConnection.off("connect", handleConnect);
+    hiveMQConnection.off("error", handleError);
+    hiveMQConnection.off("end", handleEnd);
   };
 }
 
@@ -61,7 +61,7 @@ function getServerSnapshot(): typeof connectionStatus {
 }
 
 function disconnect() {
-  client.end();
+  hiveMQConnection.end();
 }
 
 function connect(
@@ -70,8 +70,8 @@ function connect(
     "username" | "password" | "port" | "host" | "path"
   >,
 ) {
-  if (client.connected) {
-    toaster.create({
+  if (hiveMQConnection.connected) {
+    toast.create({
       title: "Already connected",
       description: "You are already connected to the MQTT broker.",
       type: "warning",
@@ -80,18 +80,30 @@ function connect(
     return;
   }
 
-  client.options.username = options.username;
-  client.options.password = options.password;
-  client.options.port = options.port;
-  client.options.host = options.host;
-  client.options.path = options.path;
+  hiveMQConnection.options.username = options.username;
+  hiveMQConnection.options.password = options.password;
+  hiveMQConnection.options.port = options.port;
+  hiveMQConnection.options.host = options.host;
+  hiveMQConnection.options.path = options.path;
 
   connectionStatus = "connecting";
-  client.connect();
+
+  try {
+    hiveMQConnection.connect();
+  } catch (error) {
+    toast.create({
+      title: "Connection failed",
+      description: (error as Error).message,
+      type: "error",
+      duration: 6000,
+    });
+    connectionStatus = "disconnected";
+    return;
+  }
 }
 
-export function useHiveMQClient() {
-  if (!client) {
+export function useHiveMQConnection() {
+  if (!hiveMQConnection) {
     throw new Error("MQTT client is not initialized");
   }
 
