@@ -8,6 +8,11 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000,
+    warmup: {
+      clientFiles: [
+        "./src/pages/**/!(*.server|*.test)*.tsx", // Include all .tsx files except server and test files (add more patterns if required)
+      ],
+    },
   },
   test: {
     environment: "jsdom",
