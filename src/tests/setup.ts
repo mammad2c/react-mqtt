@@ -1,3 +1,4 @@
+import { server } from "@/mocks/node";
 import "@testing-library/jest-dom/vitest";
 import { JSDOM } from "jsdom";
 import ResizeObserver from "resize-observer-polyfill";
@@ -57,3 +58,7 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: vi.fn(),
   })),
 });
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());

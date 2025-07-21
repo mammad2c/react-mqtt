@@ -10,6 +10,7 @@ dist-ssr
 **/*.svg
 Dockerfile
 mosquitto/config/mosquitto.conf
-mosquitto/data/mosquitto.db\
+mosquitto/data/mosquitto.db
+mosquitto/log/mosquitto.log
 .dockerignore
 .npmrc
