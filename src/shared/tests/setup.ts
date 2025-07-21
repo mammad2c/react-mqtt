@@ -1,4 +1,4 @@
-import { server } from "@/mocks/node";
+import { server } from "@/shared/mocks/node";
 import "@testing-library/jest-dom/vitest";
 import { JSDOM } from "jsdom";
 import ResizeObserver from "resize-observer-polyfill";
