@@ -1,5 +1,5 @@
-import { toaster } from "./toaster";
-import { render } from "@/tests/test-utils";
+import { toaster } from "./toast";
+import { render } from "@/shared/tests/test-utils";
 import { waitFor } from "@testing-library/react";
 import { useEffect } from "react";
 

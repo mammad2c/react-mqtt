@@ -1,6 +1,6 @@
 import { type PropsWithChildren, type ReactElement } from "react";
 import { render, type RenderOptions } from "@testing-library/react";
-import { Providers } from "@/providers";
+import { Providers } from "@/shared/layouts/providers";
 import userEvent from "@testing-library/user-event";
 
 const customRender = (

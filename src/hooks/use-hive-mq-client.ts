@@ -1,5 +1,5 @@
 import { hiveMQClient as client } from "@/services/hive-mq-client";
-import { toaster } from "@/utils/toaster";
+import { toaster } from "@/shared/lib/toast";
 import type mqtt from "mqtt";
 import { useSyncExternalStore } from "react";
 

@@ -1,5 +1,5 @@
-import { ChakraProvider } from "@/components/ui/chakra-provider";
-import { Toaster } from "@/components/ui/toaster";
+import { ChakraProvider } from "@/shared/ui/chakra-provider";
+import { Toaster } from "@/shared/ui/toaster";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
