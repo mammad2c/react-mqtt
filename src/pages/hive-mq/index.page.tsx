@@ -1,7 +1,7 @@
 import { Center, Container, Grid, Text } from "@chakra-ui/react";
-import ConnectionForm from "./ui/connection-form";
 import Link from "next/link";
 import { useConnection } from "@/shared/lib/hive-mq-client";
+import { ClientConnectionForm } from "./ui/client-connection-form";
 import { TopicSubscriptions } from "./ui/topic-subscriptions";
 import { MessagesList } from "./ui/messages-list";
 
@@ -11,7 +11,7 @@ export default function HiveMQ() {
   return (
     <Container py={8}>
       <Center flexDirection="column">
-        {isDisconnected && <ConnectionForm />}
+        {isDisconnected && <ClientConnectionForm />}
         {isConnected && (
           <>
             <Grid templateColumns="repeat(2, 1fr)" gap="6">

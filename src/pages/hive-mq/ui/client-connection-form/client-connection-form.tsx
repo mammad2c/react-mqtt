@@ -10,7 +10,7 @@ type Inputs = {
   path?: string;
 };
 
-export default function ConnectionForm() {
+export function ClientConnectionForm() {
   const {
     register,
     handleSubmit,
