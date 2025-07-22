@@ -7,7 +7,9 @@ import { MessagesList } from "./ui/messages-list";
 import { SendMessage } from "./ui/send-message";
 
 export default function HiveMQ() {
-  const { isConnected, isDisconnected, disconnect } = useConnection();
+  const { isConnected, isDisconnected, state, disconnect } = useConnection();
+
+  const showForm = isDisconnected || state.status === "connecting";
 
   return (
     <Container py={8}>
@@ -20,8 +22,8 @@ export default function HiveMQ() {
       )}
 
       <Center flexDirection="column">
-        {isDisconnected && <ClientConnectionForm />}
-        {isConnected && (
+        {showForm && <ClientConnectionForm />}
+        {!showForm && (
           <>
             <Grid templateColumns="repeat(2, 1fr)" gap="6">
               <TopicSubscriptions />

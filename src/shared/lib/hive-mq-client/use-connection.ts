@@ -46,7 +46,12 @@ function connect(
       type: "error",
       duration: 6000,
     });
-    client.end();
+    client
+      .endAsync()
+      .then(() => updateState({ status: "disconnected" }))
+      .catch(() => {
+        updateState({ status: "disconnected" });
+      });
     return;
   }
 }

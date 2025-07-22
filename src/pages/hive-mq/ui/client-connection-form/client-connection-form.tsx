@@ -15,7 +15,12 @@ export function ClientConnectionForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    defaultValues: {
+      path: "/mqtt",
+      port: 8884,
+    },
+  });
 
   const { state, connect } = useConnection();
 
