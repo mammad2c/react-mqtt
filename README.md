@@ -1,4 +1,5 @@
 [![codecov](https://codecov.io/gh/mammad2c/react-mqtt/graph/badge.svg?token=HH1LSHBA1G)](https://codecov.io/gh/mammad2c/react-mqtt)
+[![CI/CD](https://github.com/mammad2c/react-mqtt/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/mammad2c/react-mqtt/actions/workflows/ci-cd.yml)
 
 # Deployments
 
