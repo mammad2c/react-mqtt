@@ -13,7 +13,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier '**/*.*' --write",
+    "format:fix": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint:js": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "preview": "vite preview",
     "lint-staged": "lint-staged --concurrent false",
@@ -77,5 +78,11 @@
     "workerDirectory": [
       "public"
     ]
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint"
+    ],
+    "**/*": "npm run format:fix"
   }
 }
