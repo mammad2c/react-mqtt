@@ -23,7 +23,7 @@ function TestComponent() {
   );
 }
 
-describe("useTopics", () => {
+describe("useMessages", () => {
   beforeEach(() => {
     client.end();
   });
