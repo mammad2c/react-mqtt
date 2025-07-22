@@ -1,5 +1,5 @@
-import { useHiveMQConnection } from "@/shared/lib/hive-mq-connection";
-import { Button, Card, Field, Input, Stack } from "@chakra-ui/react";
+import { useConnection } from "@/shared/lib/hive-mq-client";
+import { Button, Card, Field, Input, Stack, Text } from "@chakra-ui/react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -17,7 +17,7 @@ export default function ConnectionForm() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const { status, connect } = useHiveMQConnection();
+  const { state, connect } = useConnection();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     connect(data);
@@ -30,26 +30,26 @@ export default function ConnectionForm() {
       </Card.Header>
 
       <Card.Body>
-        <p>
+        <Text>
           HiveMQ is a popular MQTT broker that provides a cloud-based solution
           for IoT messaging.
-        </p>
+        </Text>
 
-        <p>
+        <Text>
           It offers features like scalability, security, and easy integration
           with various platforms.
-        </p>
+        </Text>
 
-        <p>
+        <Text>
           Please set your username and password and host to connect to your
           HiveMQ.
-        </p>
+        </Text>
 
         <div style={{ marginTop: "20px", fontSize: "14px" }}>
-          <strong>
+          <Text as="strong">
             Attention: This project is only for educational purposes. Please do
             not use it for production.
-          </strong>
+          </Text>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="nope">
@@ -111,7 +111,7 @@ export default function ConnectionForm() {
 
             <Button
               colorPalette="yellow"
-              loading={status === "connecting"}
+              loading={state.status === "connecting"}
               type="submit"
             >
               Connect
