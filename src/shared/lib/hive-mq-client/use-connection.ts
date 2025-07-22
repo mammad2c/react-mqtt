@@ -26,8 +26,6 @@ function connect(
   >,
 ) {
   if (client.connected) {
-    client.end();
-    client.reconnect();
     return;
   }
 
@@ -42,7 +40,6 @@ function connect(
   try {
     client.connect();
   } catch (error) {
-    console.error("Connection failed:", error);
     toast.create({
       title: "Connection failed",
       description: (error as Error).message,
@@ -63,8 +60,6 @@ client.on("close", () => {
 });
 
 client.on("error", (error) => {
-  console.error("Connection error:", error);
-  console.trace();
   updateState({ status: "disconnected" });
   toast.create({
     title: "Connection Error",
