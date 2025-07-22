@@ -1,7 +1,7 @@
 import { render } from "@/shared/tests/test-utils";
 import { hiveMQClient as client, useMessages } from ".";
 import { waitFor } from "@testing-library/dom";
-import { delay } from "msw";
+import { delay } from "@/shared/lib/delay";
 
 vi.mock("mqtt");
 

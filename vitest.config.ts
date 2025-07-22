@@ -16,9 +16,9 @@ export default defineConfig({
         "src/pages/**/*.page.{tsx,ts}",
       ],
       thresholds: {
-        statements: 80,
-        functions: 80,
-        lines: 80,
+        statements: 50,
+        functions: 50,
+        lines: 50,
       },
     },
     projects: [

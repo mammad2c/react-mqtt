@@ -1,4 +1,4 @@
-import { delay } from "msw";
+import { delay } from "@/shared/lib/delay";
 
 class MockMqttClient {
   connected = false;
