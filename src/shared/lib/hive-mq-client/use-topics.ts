@@ -20,6 +20,17 @@ async function subscribeTopic(
   topic: string,
   options: { qos: 0 | 1 | 2 } = { qos: 0 },
 ) {
+  const subscriptions = getState().subscriptions;
+
+  if (subscriptions.find((sub) => sub.topic === topic)) {
+    toast.create({
+      title: "Already Subscribed",
+      description: `You are already subscribed to ${topic}.`,
+      type: "error",
+    });
+    return false;
+  }
+
   updateState({ isPending: true });
 
   try {

@@ -61,4 +61,22 @@ describe("useTopics", () => {
     // Assert
     await waitFor(() => expect(queryByText("test/topic (QoS: 0)")).toBeNull());
   });
+
+  it("should not subscribe to the same topic twice", async () => {
+    client.connect();
+
+    await delay(300);
+
+    // Arrange
+    const { getByText, user } = render(<TestComponent />);
+
+    // Act
+    await user.click(getByText("Subscribe"));
+    await user.click(getByText("Subscribe"));
+
+    // Assert
+    await waitFor(() =>
+      expect(getByText("Already Subscribed")).toBeInTheDocument(),
+    );
+  });
 });
