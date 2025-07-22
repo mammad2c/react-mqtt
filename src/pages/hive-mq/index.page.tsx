@@ -1,4 +1,4 @@
-import { Center, Container, Grid, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Container, Grid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useConnection } from "@/shared/lib/hive-mq-client";
 import { ClientConnectionForm } from "./ui/client-connection-form";
@@ -7,10 +7,18 @@ import { MessagesList } from "./ui/messages-list";
 import { SendMessage } from "./ui/send-message";
 
 export default function HiveMQ() {
-  const { isConnected, isDisconnected } = useConnection();
+  const { isConnected, isDisconnected, disconnect } = useConnection();
 
   return (
     <Container py={8}>
+      {isConnected && (
+        <Box mb={4}>
+          <Button onClick={disconnect} colorPalette="red">
+            Disconnect
+          </Button>
+        </Box>
+      )}
+
       <Center flexDirection="column">
         {isDisconnected && <ClientConnectionForm />}
         {isConnected && (
