@@ -37,7 +37,6 @@ function TestComponent() {
 
 describe("useConnection", () => {
   beforeEach(() => {
-    vi.clearAllMocks();
     client.end();
   });
 

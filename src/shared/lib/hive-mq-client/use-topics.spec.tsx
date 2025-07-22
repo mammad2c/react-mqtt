@@ -35,7 +35,6 @@ function TestComponent() {
 
 describe("useTopics", () => {
   beforeEach(() => {
-    vi.clearAllMocks();
     client.end();
   });
 

@@ -38,7 +38,7 @@ export function TopicSubscriptions() {
   return (
     <Card.Root>
       <Card.Header>
-        <Card.Title>HiveMQ</Card.Title>
+        <Card.Title>Topic Subscriptions</Card.Title>
       </Card.Header>
 
       <Card.Body>

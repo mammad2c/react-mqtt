@@ -3,7 +3,9 @@ import { delay } from "msw";
 class MockMqttClient {
   connected = false;
 
-  listeners: { [key: string]: ((params?: unknown) => void)[] } = {};
+  listeners: { [key: string]: ((...params: unknown[]) => void)[] } = {};
+
+  subscribedTopics: { [key: string]: { topic: string; qos: 0 | 1 | 2 } } = {};
 
   options: { [key: string]: unknown } = {};
 
@@ -21,6 +23,7 @@ class MockMqttClient {
 
   end() {
     this.connected = false;
+    this.subscribedTopics = {};
     this.listeners["close"]?.forEach((callback) => callback());
   }
 
@@ -35,21 +38,28 @@ class MockMqttClient {
     if (!this.connected) {
       throw new Error("Not connected to MQTT broker");
     }
-    this.listeners["message"]?.forEach((callback) =>
-      callback({ topic, qos: options.qos }),
-    );
-    return [{ topic, qos: options.qos }];
+
+    const obj = {
+      topic,
+      qos: (options?.qos ?? 0) as 0 | 1 | 2,
+    };
+
+    this.subscribedTopics[topic] = obj;
+
+    return [obj];
   }
 
   async unsubscribeAsync(topic: string) {
     if (!this.connected) {
       throw new Error("Not connected to MQTT broker");
     }
+    const obj = this.subscribedTopics[topic];
+    delete this.subscribedTopics[topic];
     this.listeners["unsubscribe"]?.forEach((callback) => callback({ topic }));
     return {
       cmd: "unsuback",
       retain: false,
-      qos: 0,
+      qos: obj.qos,
       dup: false,
       length: 2,
       topic: null,
@@ -58,7 +68,25 @@ class MockMqttClient {
     };
   }
 
-  on(event: string, callback: (params?: unknown) => void) {
+  async publishAsync(topic: string, message: string | Buffer) {
+    if (!this.connected) {
+      throw new Error("Not connected to MQTT broker");
+    }
+
+    const qos = this.subscribedTopics[topic]?.qos ?? 0;
+
+    const messageObj = {
+      toString: () => message,
+    };
+
+    this.listeners["message"]?.forEach((callback) =>
+      callback(topic, messageObj, {
+        qos,
+      }),
+    );
+  }
+
+  on(event: string, callback: (...params: unknown[]) => void) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
