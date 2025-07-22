@@ -25,7 +25,7 @@ export default function HiveMQ() {
         {showForm && <ClientConnectionForm />}
         {!showForm && (
           <>
-            <Grid templateColumns="repeat(2, 1fr)" gap="6">
+            <Grid templateColumns={{ md: "repeat(2, 1fr)" }} gap="6">
               <TopicSubscriptions />
               <MessagesList />
               <SendMessage />
