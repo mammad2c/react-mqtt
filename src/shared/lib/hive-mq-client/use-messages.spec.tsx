@@ -44,5 +44,7 @@ describe("useMessages", () => {
 
     // Assert
     await waitFor(() => expect(getByText(/test\/topic/i)).toBeInTheDocument());
+    await waitFor(() => expect(getByText(/qos: 0/i)).toBeInTheDocument());
+    await waitFor(() => expect(getByText(/test message/i)).toBeInTheDocument());
   });
 });
