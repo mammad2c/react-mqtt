@@ -1,5 +1,5 @@
 import { useConnection } from "@/shared/lib/hive-mq-client";
-import { Button, Card, Field, Input, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Card, Field, Input, Stack, Text } from "@chakra-ui/react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -45,12 +45,12 @@ export function ClientConnectionForm() {
           HiveMQ.
         </Text>
 
-        <div style={{ marginTop: "20px", fontSize: "14px" }}>
+        <Box mt={4} fontSize={14}>
           <Text as="strong">
             Attention: This project is only for educational purposes. Please do
             not use it for production.
           </Text>
-        </div>
+        </Box>
 
         <form onSubmit={handleSubmit(onSubmit)} autoComplete="nope">
           <Stack gap="4" marginTop={4}>

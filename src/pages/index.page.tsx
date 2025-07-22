@@ -1,4 +1,4 @@
-import { Button, Center, Container, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Container, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function Home() {
@@ -14,11 +14,11 @@ export default function Home() {
         </Text>
 
         <Text mb={4}>Available brokers:</Text>
-        <div>
+        <Box>
           <Button colorPalette="yellow" asChild>
             <Link href="/hive-mq">HiveMQ</Link>
           </Button>
-        </div>
+        </Box>
       </Center>
     </Container>
   );

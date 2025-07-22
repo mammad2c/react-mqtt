@@ -6,7 +6,9 @@ import { delay } from "msw";
 vi.mock("mqtt");
 
 function TestComponent() {
-  const { messages } = useMessages();
+  const {
+    state: { messages },
+  } = useMessages();
 
   return (
     <div>

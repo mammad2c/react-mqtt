@@ -2,7 +2,9 @@ import { useMessages } from "@/shared/lib/hive-mq-client";
 import { Box, Card, Code, Text } from "@chakra-ui/react";
 
 export function MessagesList() {
-  const { messages } = useMessages();
+  const {
+    state: { messages },
+  } = useMessages();
 
   return (
     <Card.Root>
