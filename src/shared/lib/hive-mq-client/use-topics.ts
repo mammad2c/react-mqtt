@@ -16,7 +16,10 @@ const initialState: Store = {
 const { subscribe, updateState, getState } =
   createExternalStore<Store>(initialState);
 
-async function subscribeTopic(topic: string, options: { qos: 0 | 1 | 2 }) {
+async function subscribeTopic(
+  topic: string,
+  options: { qos: 0 | 1 | 2 } = { qos: 0 },
+) {
   updateState({ isPending: true });
 
   try {

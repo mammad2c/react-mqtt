@@ -1,5 +1,5 @@
 import { render } from "@/shared/tests/test-utils";
-import { useConnection } from ".";
+import { useConnection, hiveMQClient as client } from ".";
 import { waitFor } from "@testing-library/dom";
 
 vi.mock("mqtt");
@@ -38,6 +38,7 @@ function TestComponent() {
 describe("useConnection", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    client.end();
   });
 
   it("should connect and disconnect to the MQTT broker", async () => {
